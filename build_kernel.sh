@@ -12,8 +12,7 @@ TARGET=arm
 TARGET_ARCH=arm
 
 # The arguments for buildkernel
-ARGS="TARGET=${TARGET} TARGET_ARCH=${TARGET_ARCH} KERNCONF=${KERNCONF}"
-ARGS="${ARGS} -DKERNFAST"
+#ARGS="-j2 -DKERNFAST"
 
 # Source the required files
 . ./helpers/kernel.sh
@@ -23,8 +22,7 @@ ARGS="${ARGS} -DKERNFAST"
 set -e
 
 # Build the kernel
-cd ${BASE_DIR}
-nice make buildkernel ${ARGS}
+buildkernel ${BASE_DIR} "${KERNCONF}" "${TARGET}" "${TARGET_ARCH}" ${ARGS}
 KERNEL_FILE=`get_kernel_file "${BASE_DIR}" "${KERNCONF}" \
     "${TARGET}" "${TARGET_ARCH}"`
 

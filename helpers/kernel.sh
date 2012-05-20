@@ -2,6 +2,19 @@
 # Useful functions to get details from the Kernel
 #
 
+buildkernel()
+{
+	DIR="$1"
+	KERNCONF="$2"
+	TARGET="$3"
+	TARGET_ARCH="$4"
+	shift 4
+	EXTRA_ARGS=$@
+
+	ARGS="TARGET=${TARGET} TARGET_ARCH=${TARGET_ARCH} KERNCONF=${KERNCONF}"
+	make buildkernel -C ${DIR} ${ARGS} ${EXTRA_ARGS}
+}
+
 # Gets the kernel file for a given build
 get_kernel_file()
 {
